@@ -317,6 +317,32 @@
     .contact-grid{grid-template-columns:1fr;}
     section{padding:64px 0;}
     .hero{padding:56px 0 64px;}
+  }  .gallery-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
+    background:var(--line);
+  }
+  .gallery-item{
+    aspect-ratio:1/1;
+    overflow:hidden;
+    background:var(--ink);
+    position:relative;
+  }
+  .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease;}
+  .gallery-item:hover img{transform:scale(1.06);}
+  .gallery-item .cap{
+    position:absolute;left:0;right:0;bottom:0;
+    padding:14px 16px;
+    background:linear-gradient(0deg,rgba(0,0,0,0.72),transparent);
+    color:#fff;font-size:0.8rem;font-weight:600;
+    opacity:0;transition:opacity .25s ease;
+  }
+  .gallery-item:hover .cap{opacity:1;}
+  .gallery-empty{
+    padding:40px;text-align:center;color:var(--text-soft);
+    border:1px dashed var(--line);background:var(--white);
+  }
+  @media(max-width:920px){
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
   }
 </style>
 </head>
@@ -333,6 +359,7 @@
     </a>
     <nav class="links" id="navLinks">
       <a href="#hakkimda">Hakkımda</a>
+      <a href="#galeri">Galeri</a>
       <a href="#hizmetler">Hizmetler</a>
       <a href="#ilanlar">İlanlar</a>
       <a href="#form">Bilgi Formu</a>
@@ -345,8 +372,11 @@
 </header>
 
 <section class="hero" id="top">
-  <div class="wrap" style="text-align:center;margin-bottom:12px;">
-    <img src="assets/arsaci-baskan-logo.jpg" alt="Arsacı Başkan Gayrimenkul & Emlak" style="max-width:380px;width:60%;margin:0 auto 8px;">
+  <div class="wrap" style="text-align:center;margin-bottom:8px;">
+    <div style="font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.4rem,6vw,4.6rem);line-height:1;letter-spacing:-0.01em;color:var(--ink);">
+      Arsacı <span style="color:var(--clay);font-style:italic;">Başkan</span>
+    </div>
+    <div style="font-size:0.85rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-soft);margin-top:10px;font-weight:600;">Wen Gayrimenkul &amp; Emlak</div>
   </div>
   <div class="wrap">
     <div>
@@ -385,14 +415,27 @@
       <h2 class="section-head" style="margin-bottom:0;">Ferdi Alkan</h2>
     </div>
     <div>
-      <p>Wen Gayrimenkul bünyesinde konut, ticari mülk ve arazi danışmanlığı yapıyorum. "Arsacı Başkan" unvanıyla özellikle arsa ve arazi yatırımlarında müşterilerime doğru bölge, doğru imar durumu ve doğru fiyat analizini sunuyorum.</p>
-      <p>Çalışma alanım tek bir şehirle sınırlı değil — Türkiye genelinde, nerede fırsat varsa oradayım. Süreç boyunca şeffaf bilgilendirme ve net rakamlarla ilerliyorum.</p>
+      <p id="aboutP1">Wen Gayrimenkul bünyesinde konut, ticari mülk ve arazi danışmanlığı yapıyorum. "Arsacı Başkan" unvanıyla özellikle arsa ve arazi yatırımlarında müşterilerime doğru bölge, doğru imar durumu ve doğru fiyat analizini sunuyorum.</p>
+      <p id="aboutP2">Çalışma alanım tek bir şehirle sınırlı değil — Türkiye genelinde, nerede fırsat varsa oradayım. Süreç boyunca şeffaf bilgilendirme ve net rakamlarla ilerliyorum.</p>
       <div class="about-facts">
         <div class="fact"><span>Unvan</span><span>Arsacı Başkan</span></div>
         <div class="fact"><span>Marka</span><span>Wen Gayrimenkul</span></div>
         <div class="fact"><span>Çalışma Alanı</span><span>Türkiye Geneli</span></div>
         <div class="fact"><span>İletişim</span><span>WhatsApp / Telefon</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeri">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Galeri</div>
+      <h2>Portföyden Kareler</h2>
+      <p>İlan görselleri, ofis fotoğrafları ve tanıtım içerikleri.</p>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-empty" style="grid-column:1/-1;">Fotoğraflar Yönetim panelinden eklendikçe burada görünecek.</div>
     </div>
   </div>
 </section>
@@ -553,6 +596,8 @@
       if(s.address) document.getElementById('addressText').textContent = s.address;
       if(s.hours) document.getElementById('hoursText').textContent = s.hours;
       if(s.hero_subtitle) document.getElementById('heroSubtitle').textContent = s.hero_subtitle;
+      if(s.about_p1) document.getElementById('aboutP1').textContent = s.about_p1;
+      if(s.about_p2) document.getElementById('aboutP2').textContent = s.about_p2;
       if(s.whatsapp){
         document.getElementById('waBtn').href = 'https://wa.me/' + s.whatsapp;
       }
@@ -586,6 +631,24 @@
             ${item.price ? `<p style="margin-top:8px;font-weight:700;color:var(--ink)">${item.price}</p>` : ''}
           </div>`;
         grid.appendChild(card);
+      });
+    })
+    .catch(() => {});
+
+  // --- Galeriyi (data/gallery.json) çek ve render et ---
+  fetch('data/gallery.json?_=' + Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .then(d => {
+      if(!d || !d.items || !d.items.length) return;
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+      d.items.forEach(item => {
+        if(!item.image) return;
+        const el = document.createElement('div');
+        el.className = 'gallery-item';
+        el.innerHTML = `<img src="${item.image}" alt="${item.caption || 'Galeri'}">` +
+          (item.caption ? `<div class="cap">${item.caption}</div>` : '');
+        grid.appendChild(el);
       });
     })
     .catch(() => {});

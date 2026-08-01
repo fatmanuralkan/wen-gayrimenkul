@@ -23,6 +23,8 @@ collections:
           - {label: "Çalışma Saatleri", name: "hours", widget: "string"}
           - {label: "Ana Sayfa Başlığı", name: "hero_title", widget: "string"}
           - {label: "Ana Sayfa Alt Metni", name: "hero_subtitle", widget: "text"}
+          - {label: "Hakkımda - 1. Paragraf", name: "about_p1", widget: "text"}
+          - {label: "Hakkımda - 2. Paragraf", name: "about_p2", widget: "text"}
 
   - name: "listings"
     label: "İlanlar"
@@ -44,3 +46,18 @@ collections:
               - {label: "Fiyat (opsiyonel)", name: "price", widget: "string", required: false}
               - {label: "Açıklama", name: "description", widget: "text"}
               - {label: "Fotoğraf (opsiyonel)", name: "image", widget: "image", required: false}
+
+  - name: "gallery"
+    label: "Galeri"
+    files:
+      - file: "data/gallery.json"
+        label: "Galeri Fotoğrafları"
+        name: "gallery"
+        fields:
+          - label: "Fotoğraflar"
+            name: "items"
+            widget: "list"
+            summary: "{{caption}}"
+            fields:
+              - {label: "Fotoğraf", name: "image", widget: "image"}
+              - {label: "Açıklama (opsiyonel)", name: "caption", widget: "string", required: false}
