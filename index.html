@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wen Gayrimenkul | Ferdi Alkan — Arsacı Başkan</title>
+<meta name="description" content="Ferdi Alkan, Wen Gayrimenkul çatısı altında Türkiye genelinde konut, ticari ve arsa danışmanlığı sunuyor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101826;
+    --ink-soft:#1c283b;
+    --paper:#F6F2E9;
+    --paper-warm:#EFE7D6;
+    --clay:#9A4B2E;
+    --clay-dark:#7A3B23;
+    --gold:#C69A3C;
+    --gold-soft:#E4C777;
+    --line:#DCD1B4;
+    --text:#232019;
+    --text-soft:#5B5647;
+    --white:#FFFFFF;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--clay);
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;background:var(--clay);
+  }
+
+  /* ---------- Seal / signature motif ---------- */
+  .seal{
+    width:118px;height:118px;
+    border:1.5px solid var(--gold);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    flex-shrink:0;
+  }
+  .seal::before{
+    content:"";
+    position:absolute;
+    inset:8px;
+    border:1px dashed var(--gold-soft);
+    border-radius:50%;
+  }
+  .seal-inner{
+    text-align:center;
+    font-family:'Fraunces',serif;
+    color:var(--ink);
+  }
+  .seal-inner .num{font-size:1.5rem;font-weight:700;line-height:1;color:var(--clay);}
+  .seal-inner .lbl{font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-top:4px;display:block;}
+
+  .corner-mark{position:relative;}
+  .corner-mark::before,.corner-mark::after{
+    content:"";
+    position:absolute;
+    width:16px;height:16px;
+    border:1.5px solid var(--gold);
+  }
+  .corner-mark::before{top:-8px;left:-8px;border-right:none;border-bottom:none;}
+  .corner-mark::after{bottom:-8px;right:-8px;border-left:none;border-top:none;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(246,242,233,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 28px;
+    max-width:1180px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-mark{
+    width:38px;height:38px;
+    background:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--gold-soft);
+    font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;
+  }
+  .brand-text{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-text strong{font-family:'Fraunces',serif;font-size:1.02rem;color:var(--ink);letter-spacing:0.01em;}
+  .brand-text span{font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--clay);font-weight:600;}
+  nav.links{display:flex;gap:32px;align-items:center;}
+  nav.links a{
+    font-size:0.86rem;font-weight:600;color:var(--text-soft);
+    position:relative;padding:4px 0;
+  }
+  nav.links a:hover{color:var(--ink);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 24px;
+    font-size:0.82rem;font-weight:700;
+    letter-spacing:0.03em;
+    border:1.5px solid var(--ink);
+    color:var(--ink);
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .btn-primary{background:var(--ink);color:var(--paper);}
+  .btn-primary:hover{background:var(--clay-dark);border-color:var(--clay-dark);}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+  .btn-gold{border-color:var(--gold);color:var(--ink);background:var(--gold-soft);}
+  .btn-gold:hover{background:var(--gold);}
+  .btn-sm{padding:9px 18px;font-size:0.76rem;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:88px 0 100px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:64px;
+    align-items:center;
+  }
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--white);
+    border:1px solid var(--line);
+    padding:8px 16px 8px 8px;
+    margin-bottom:28px;
+  }
+  .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--clay);}
+  .hero-badge span{font-size:0.78rem;font-weight:600;color:var(--text-soft);}
+  .hero h1{
+    font-size:3.4rem;
+    line-height:1.05;
+    margin-bottom:24px;
+  }
+  .hero h1 em{
+    font-style:normal;color:var(--clay);
+  }
+  .hero p.lead{
+    font-size:1.08rem;
+    color:var(--text-soft);
+    max-width:480px;
+    margin-bottom:36px;
+  }
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px;}
+  .hero-stats{display:flex;gap:40px;padding-top:32px;border-top:1px solid var(--line);}
+  .hero-stats div strong{display:block;font-family:'Fraunces',serif;font-size:1.7rem;color:var(--ink);}
+  .hero-stats div span{font-size:0.76rem;color:var(--text-soft);letter-spacing:0.02em;}
+
+  .hero-photo{position:relative;}
+  .hero-photo-frame{
+    background:var(--ink);
+    padding:14px;
+    position:relative;
+  }
+  .hero-photo-frame img{
+    width:100%;height:520px;object-fit:cover;object-position:top center;
+    filter:grayscale(8%);
+  }
+  .hero-seal-float{
+    position:absolute;
+    bottom:-30px;left:-30px;
+    background:var(--paper);
+    padding:6px;
+  }
+
+  /* ---------- Sections ---------- */
+  section{padding:96px 0;}
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .section-head h2{font-size:2.3rem;margin-top:14px;}
+  .section-head p{color:var(--text-soft);margin-top:16px;font-size:1.02rem;}
+
+  /* About */
+  .about{background:var(--ink);color:var(--paper);}
+  .about .eyebrow{color:var(--gold-soft);}
+  .about .eyebrow::before{background:var(--gold-soft);}
+  .about .section-head h2{color:var(--paper);}
+  .about-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:64px;align-items:start;}
+  .about p{color:#C9C4B6;font-size:1.02rem;margin-bottom:18px;max-width:560px;}
+  .about-facts{display:flex;flex-direction:column;gap:0;}
+  .about-facts .fact{
+    padding:20px 0;
+    border-bottom:1px solid rgba(255,255,255,0.14);
+    display:flex;justify-content:space-between;gap:20px;
+  }
+  .about-facts .fact:first-child{border-top:1px solid rgba(255,255,255,0.14);}
+  .about-facts .fact span:first-child{color:#8B8677;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.08em;}
+  .about-facts .fact span:last-child{color:var(--paper);font-weight:600;text-align:right;}
+
+  /* Services */
+  .services-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .service-card{
+    background:var(--paper);
+    padding:44px 32px;
+    transition:background .25s ease;
+  }
+  .service-card:hover{background:var(--white);}
+  .service-num{font-family:'Fraunces',serif;font-size:0.8rem;color:var(--clay);font-weight:700;margin-bottom:24px;display:block;}
+  .service-card h3{font-size:1.3rem;margin-bottom:12px;}
+  .service-card p{color:var(--text-soft);font-size:0.94rem;}
+
+  /* Listings */
+  .listings{background:var(--paper-warm);}
+  .listings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .listing-card{
+    background:var(--white);
+    border:1px solid var(--line);
+  }
+  .listing-img{
+    height:180px;
+    background:linear-gradient(135deg,var(--ink) 0%, var(--ink-soft) 100%);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .listing-img span{
+    font-family:'Fraunces',serif;color:var(--gold-soft);font-size:0.8rem;
+    letter-spacing:0.1em;text-transform:uppercase;
+  }
+  .listing-body{padding:22px 24px;}
+  .listing-tag{
+    font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--clay);margin-bottom:10px;display:block;
+  }
+  .listing-body h3{font-size:1.08rem;margin-bottom:8px;}
+  .listing-body p{font-size:0.88rem;color:var(--text-soft);}
+  .listings-note{
+    margin-top:36px;padding:22px 26px;
+    background:var(--white);border:1px dashed var(--line);
+    font-size:0.92rem;color:var(--text-soft);
+  }
+
+  /* Contact */
+  .contact-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:56px;}
+  .contact-card{background:var(--white);border:1px solid var(--line);padding:40px;}
+  .contact-row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);}
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row .ic{
+    width:38px;height:38px;flex-shrink:0;
+    background:var(--paper-warm);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--clay);font-weight:700;font-size:0.9rem;
+  }
+  .contact-row div strong{display:block;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-soft);margin-bottom:4px;}
+  .contact-row div a,.contact-row div span{font-size:0.98rem;font-weight:600;color:var(--ink);}
+  .map-frame{border:1px solid var(--line);min-height:420px;}
+  .map-frame iframe{width:100%;height:100%;min-height:420px;border:0;}
+
+  footer{
+    background:var(--ink);color:#8B8677;
+    padding:36px 0;
+    font-size:0.82rem;
+  }
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer a{color:var(--gold-soft);}
+
+  .mobile-toggle{display:none;background:none;border:none;font-size:1.6rem;color:var(--ink);cursor:pointer;}
+
+  @media(max-width:920px){
+    nav.links{
+      position:fixed;top:70px;left:0;right:0;bottom:0;
+      background:var(--paper);
+      flex-direction:column;
+      padding:32px;
+      gap:22px;
+      align-items:flex-start;
+      transform:translateX(100%);
+      transition:transform .3s ease;
+      overflow-y:auto;
+    }
+    nav.links.open{transform:translateX(0);}
+    .mobile-toggle{display:block;}
+    .hero .wrap{grid-template-columns:1fr;gap:48px;}
+    .hero h1{font-size:2.3rem;}
+    .hero-photo-frame img{height:380px;}
+    .about-grid{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr;}
+    .listings-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+    .hero{padding:56px 0 64px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <img src="assets/wen-logo.jpg" alt="Wen Gayrimenkul" style="height:46px;width:auto;">
+      <div class="brand-text">
+        <strong>Ferdi Alkan</strong>
+        <span>Arsacı Başkan</span>
+      </div>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#hakkimda">Hakkımda</a>
+      <a href="#hizmetler">Hizmetler</a>
+      <a href="#ilanlar">İlanlar</a>
+      <a href="#form">Bilgi Formu</a>
+      <a href="#iletisim">İletişim</a>
+      <a href="https://whatsapp.com/channel/0029Vb6OGGXCsU9V2EMHjQ3O" target="_blank" rel="noopener">WhatsApp Kanalı</a>
+      <a href="/admin/" class="btn btn-primary btn-sm">Yönetim</a>
+    </nav>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menü">☰</button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap" style="text-align:center;margin-bottom:12px;">
+    <img src="assets/arsaci-baskan-logo.jpg" alt="Arsacı Başkan Gayrimenkul & Emlak" style="max-width:380px;width:60%;margin:0 auto 8px;">
+  </div>
+  <div class="wrap">
+    <div>
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span>Türkiye Geneli Gayrimenkul Danışmanlığı</span>
+      </div>
+      <h1>Doğru mülk,<br><em>doğru fiyata,</em><br>doğru yerde.</h1>
+      <p class="lead" id="heroSubtitle">Konuttan ticari mülke, araziden yatırımlık gayrimenkule — Wen Gayrimenkul çatısı altında Türkiye'nin her yerinde güvenilir danışmanlık.</p>
+      <div class="hero-cta">
+        <a href="https://wa.me/905359828512" class="btn btn-primary" id="waBtn">WhatsApp'tan Yaz</a>
+        <a href="tel:+905359828512" class="btn btn-ghost" id="telBtn">0535 982 85 12</a>
+        <a href="https://whatsapp.com/channel/0029Vb6OGGXCsU9V2EMHjQ3O" class="btn btn-gold" target="_blank" rel="noopener">WhatsApp Kanalıma Katıl</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>81</strong><span>İl Kapsamı</span></div>
+        <div><strong>3</strong><span>Uzmanlık Alanı</span></div>
+        <div><strong>7/24</strong><span>WhatsApp Destek</span></div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-frame">
+        <img src="assets/ferdi-alkan.jpg" alt="Ferdi Alkan - Wen Gayrimenkul">
+      </div>
+      <div class="hero-seal-float">
+        <img src="assets/arsaci-baskan-logo.jpg" alt="Arsacı Başkan" style="width:110px;height:110px;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,0.25);">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="hakkimda">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow">Hakkımda</div>
+      <h2 class="section-head" style="margin-bottom:0;">Ferdi Alkan</h2>
+    </div>
+    <div>
+      <p>Wen Gayrimenkul bünyesinde konut, ticari mülk ve arazi danışmanlığı yapıyorum. "Arsacı Başkan" unvanıyla özellikle arsa ve arazi yatırımlarında müşterilerime doğru bölge, doğru imar durumu ve doğru fiyat analizini sunuyorum.</p>
+      <p>Çalışma alanım tek bir şehirle sınırlı değil — Türkiye genelinde, nerede fırsat varsa oradayım. Süreç boyunca şeffaf bilgilendirme ve net rakamlarla ilerliyorum.</p>
+      <div class="about-facts">
+        <div class="fact"><span>Unvan</span><span>Arsacı Başkan</span></div>
+        <div class="fact"><span>Marka</span><span>Wen Gayrimenkul</span></div>
+        <div class="fact"><span>Çalışma Alanı</span><span>Türkiye Geneli</span></div>
+        <div class="fact"><span>İletişim</span><span>WhatsApp / Telefon</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hizmetler">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Hizmetler</div>
+      <h2>Üç alanda uçtan uca danışmanlık</h2>
+      <p>Alım, satım ve yatırım süreçlerinde her mülk tipi için ayrı bir uzmanlık yaklaşımı.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <h3>Konut</h3>
+        <p>Satılık ve kiralık daire, villa ve müstakil ev danışmanlığı. Bütçenize ve ihtiyacınıza uygun seçenekler.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <h3>Ticari Mülk</h3>
+        <p>Ofis, dükkan, depo ve işletmeye hazır ticari alanlarda kiralama ve satış danışmanlığı.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <h3>Arsa &amp; Arazi</h3>
+        <p>İmar durumu, tapu ve konum analiziyle yatırımlık arsa ve arazi tespiti — "Arsacı Başkan" uzmanlığıyla.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="listings" id="ilanlar">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">İlanlar</div>
+      <h2>Güncel Portföy</h2>
+      <p>İlanlar Yönetim panelinden eklendikçe burada listelenecek.</p>
+    </div>
+    <div class="listings-grid" id="listingsGrid">
+      <div class="listing-card">
+        <div class="listing-img"><span>Fotoğraf Eklenecek</span></div>
+        <div class="listing-body">
+          <span class="listing-tag">Konut</span>
+          <h3>İlan başlığı buraya gelecek</h3>
+          <p>Yönetim panelinden ilan ekleyin, detaylar burada görünsün.</p>
+        </div>
+      </div>
+    </div>
+    <div class="listings-note">Bu kartlar "data/listings.json" dosyasından geliyor. "Yönetim" panelinden giriş yaptığınızda kendi ilanlarınızı ekleyip bu bölümü güncelleyebilirsiniz.</div>
+  </div>
+</section>
+
+<section id="form" style="background:var(--ink);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" style="color:var(--gold-soft);"><span></span>Bilgi Formu</div>
+      <h2 style="color:var(--paper);margin-top:14px;">Aradığınız gayrimenkulü bize anlatın</h2>
+      <p style="color:#C9C4B6;">Formu doldurun, sizi arayalım.</p>
+    </div>
+    <form name="lead-form" method="POST" data-netlify="true" netlify-honeypot="bot-field"
+          style="background:var(--paper);padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:760px;">
+      <input type="hidden" name="form-name" value="lead-form">
+      <p style="display:none;"><label>Bunu boş bırakın: <input name="bot-field"></label></p>
+
+      <div style="grid-column:1/-1;">
+        <label style="display:block;font-size:0.8rem;font-weight:700;margin-bottom:8px;color:var(--ink);">Ad Soyad *</label>
+        <input type="text" name="ad-soyad" required style="width:100%;padding:12px 14px;border:1px solid var(--line);font-family:inherit;font-size:0.95rem;">
+      </div>
+
+      <div>
+        <label style="display:block;font-size:0.8rem;font-weight:700;margin-bottom:8px;color:var(--ink);">Telefon *</label>
+        <input type="tel" name="telefon" required style="width:100%;padding:12px 14px;border:1px solid var(--line);font-family:inherit;font-size:0.95rem;">
+      </div>
+
+      <div>
+        <label style="display:block;font-size:0.8rem;font-weight:700;margin-bottom:8px;color:var(--ink);">Ne Arıyorsunuz? *</label>
+        <select name="talep-turu" required style="width:100%;padding:12px 14px;border:1px solid var(--line);font-family:inherit;font-size:0.95rem;background:var(--white);">
+          <option value="">Seçiniz</option>
+          <option value="Arsa">Arsa</option>
+          <option value="Konut">Konut</option>
+          <option value="Arazi">Arazi</option>
+          <option value="Ticari">Ticari</option>
+          <option value="Diğer">Diğer</option>
+        </select>
+      </div>
+
+      <div style="grid-column:1/-1;">
+        <label style="display:block;font-size:0.8rem;font-weight:700;margin-bottom:8px;color:var(--ink);">Bölge / Yer</label>
+        <input type="text" name="bolge" placeholder="Örn. İzmir, Bayraklı" style="width:100%;padding:12px 14px;border:1px solid var(--line);font-family:inherit;font-size:0.95rem;">
+      </div>
+
+      <div style="grid-column:1/-1;">
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Gönder</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="iletisim">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">İletişim</div>
+      <h2>Konuşalım</h2>
+      <p>Sorularınız için WhatsApp, telefon veya e-posta ile ulaşabilirsiniz.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-row">
+          <div class="ic">T</div>
+          <div><strong>Telefon</strong><a href="tel:+905359828512" id="phoneLink">0535 982 85 12</a></div>
+        </div>
+        <div class="contact-row">
+          <div class="ic">E</div>
+          <div><strong>E-posta</strong><a href="mailto:ferdi.alkan@hotmail.com.tr" id="emailLink">ferdi.alkan@hotmail.com.tr</a></div>
+        </div>
+        <div class="contact-row">
+          <div class="ic">A</div>
+          <div><strong>Adres</strong><span id="addressText">Adalet Mah. Manas Bulvarı, Kırkpınarlar İş Merkezi No:2 Kat:2, Bayraklı / İzmir</span></div>
+        </div>
+        <div class="contact-row">
+          <div class="ic">S</div>
+          <div><strong>Çalışma Saatleri</strong><span id="hoursText">Pazartesi - Cumartesi, 09:00 - 19:00</span></div>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps?q=Kırkpınarlar+İş+Merkezi,+Adalet+Mah.+Manas+Bulvarı,+Bayraklı,+İzmir&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Wen Gayrimenkul — Ferdi Alkan. Tüm hakları saklıdır.</span>
+    <span><a href="/admin/">Yönetim Girişi</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const toggle = document.getElementById('mobileToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // --- Ayarları (data/settings.json) çek ve sayfayı güncelle ---
+  fetch('data/settings.json?_=' + Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .then(s => {
+      if(!s) return;
+      if(s.phone){
+        document.getElementById('phoneLink').textContent = s.phone;
+        document.getElementById('telBtn').textContent = s.phone;
+      }
+      if(s.email) document.getElementById('emailLink').textContent = s.email;
+      if(s.address) document.getElementById('addressText').textContent = s.address;
+      if(s.hours) document.getElementById('hoursText').textContent = s.hours;
+      if(s.hero_subtitle) document.getElementById('heroSubtitle').textContent = s.hero_subtitle;
+      if(s.whatsapp){
+        document.getElementById('waBtn').href = 'https://wa.me/' + s.whatsapp;
+      }
+      if(s.phone){
+        const digits = s.phone.replace(/\D/g,'');
+        document.getElementById('telBtn').href = 'tel:+9' + digits;
+      }
+      if(s.email) document.getElementById('emailLink').href = 'mailto:' + s.email;
+    })
+    .catch(() => {});
+
+  // --- İlanları (data/listings.json) çek ve kartları oluştur ---
+  fetch('data/listings.json?_=' + Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .then(d => {
+      if(!d || !d.items || !d.items.length) return;
+      const grid = document.getElementById('listingsGrid');
+      grid.innerHTML = '';
+      d.items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'listing-card';
+        const imgHtml = item.image
+          ? `<div class="listing-img" style="background:#000"><img src="${item.image}" style="width:100%;height:100%;object-fit:cover" alt="${item.title || ''}"></div>`
+          : `<div class="listing-img"><span>Fotoğraf Eklenecek</span></div>`;
+        card.innerHTML = `
+          ${imgHtml}
+          <div class="listing-body">
+            <span class="listing-tag">${item.type || 'İlan'}</span>
+            <h3>${item.title || 'İlan başlığı'}</h3>
+            <p>${item.description || ''}</p>
+            ${item.price ? `<p style="margin-top:8px;font-weight:700;color:var(--ink)">${item.price}</p>` : ''}
+          </div>`;
+        grid.appendChild(card);
+      });
+    })
+    .catch(() => {});
+</script>
+
+</body>
+</html>

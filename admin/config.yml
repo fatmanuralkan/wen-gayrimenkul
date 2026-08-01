@@ -1,0 +1,46 @@
+backend:
+  name: github
+  repo: KULLANICI-ADINIZ/REPO-ADINIZ   # DİKKAT: Bunu kendi GitHub kullanıcı adınız/repo adınızla değiştirin
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+locale: "tr"
+
+collections:
+  - name: "settings"
+    label: "Site Ayarları"
+    files:
+      - file: "data/settings.json"
+        label: "İletişim ve Genel Bilgiler"
+        name: "settings"
+        fields:
+          - {label: "Telefon (görünen)", name: "phone", widget: "string"}
+          - {label: "WhatsApp Numarası (90 ile başlasın, boşluksuz, örn 905XXXXXXXXX)", name: "whatsapp", widget: "string"}
+          - {label: "E-posta", name: "email", widget: "string"}
+          - {label: "Adres", name: "address", widget: "text"}
+          - {label: "Çalışma Saatleri", name: "hours", widget: "string"}
+          - {label: "Ana Sayfa Başlığı", name: "hero_title", widget: "string"}
+          - {label: "Ana Sayfa Alt Metni", name: "hero_subtitle", widget: "text"}
+
+  - name: "listings"
+    label: "İlanlar"
+    files:
+      - file: "data/listings.json"
+        label: "İlan Listesi"
+        name: "listings"
+        fields:
+          - label: "İlanlar"
+            name: "items"
+            widget: "list"
+            summary: "{{title}} — {{type}}"
+            fields:
+              - {label: "Başlık", name: "title", widget: "string"}
+              - label: "Tür"
+                name: "type"
+                widget: "select"
+                options: ["Konut", "Ticari", "Arsa"]
+              - {label: "Fiyat (opsiyonel)", name: "price", widget: "string", required: false}
+              - {label: "Açıklama", name: "description", widget: "text"}
+              - {label: "Fotoğraf (opsiyonel)", name: "image", widget: "image", required: false}

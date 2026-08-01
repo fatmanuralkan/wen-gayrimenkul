@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "title": "İlan başlığı buraya gelecek",
+      "type": "Konut",
+      "price": "",
+      "description": "Yönetim panelinden ilan ekleyin, detaylar burada görünsün.",
+      "image": ""
+    },
+    {
+      "title": "İlan başlığı buraya gelecek",
+      "type": "Ticari",
+      "price": "",
+      "description": "Yönetim panelinden ilan ekleyin, detaylar burada görünsün.",
+      "image": ""
+    },
+    {
+      "title": "İlan başlığı buraya gelecek",
+      "type": "Arsa",
+      "price": "",
+      "description": "Yönetim panelinden ilan ekleyin, detaylar burada görünsün.",
+      "image": ""
+    }
+  ]
+}
