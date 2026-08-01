@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: KULLANICI-ADINIZ/REPO-ADINIZ   # DİKKAT: Bunu kendi GitHub kullanıcı adınız/repo adınızla değiştirin
+  name: git-gateway
   branch: main
 
 media_folder: "assets/uploads"
