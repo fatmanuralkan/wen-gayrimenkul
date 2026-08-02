@@ -50,13 +50,14 @@ collections:
     label: "Galeri"
     files:
       - file: "data/gallery.json"
-        label: "Galeri Fotoğrafları"
+        label: "Galeri Fotoğraf & Videoları"
         name: "gallery"
         fields:
-          - label: "Fotoğraflar"
+          - label: "Fotoğraf / Video"
             name: "items"
             widget: "list"
             summary: "{{caption}}"
             fields:
-              - {label: "Fotoğraf", name: "image", widget: "image"}
+              - {label: "Fotoğraf (video ekliyorsanız boş bırakın)", name: "image", widget: "image", required: false}
+              - {label: "Video (fotoğraf ekliyorsanız boş bırakın)", name: "video", widget: "file", required: false}
               - {label: "Açıklama (opsiyonel)", name: "caption", widget: "string", required: false}

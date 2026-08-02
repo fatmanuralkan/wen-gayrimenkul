@@ -751,11 +751,13 @@
       const grid = document.getElementById('galleryGrid');
       grid.innerHTML = '';
       d.items.forEach(item => {
-        if(!item.image) return;
+        if(!item.image && !item.video) return;
         const el = document.createElement('div');
         el.className = 'gallery-item';
-        el.innerHTML = `<img src="${item.image}" alt="${item.caption || 'Galeri'}">` +
-          (item.caption ? `<div class="cap">${item.caption}</div>` : '');
+        const media = item.video
+          ? `<video src="${item.video}" muted loop playsinline autoplay style="width:100%;height:100%;object-fit:cover;"></video>`
+          : `<img src="${item.image}" alt="${item.caption || 'Galeri'}">`;
+        el.innerHTML = media + (item.caption ? `<div class="cap">${item.caption}</div>` : '');
         grid.appendChild(el);
       });
     })
