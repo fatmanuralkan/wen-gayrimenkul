@@ -341,8 +341,11 @@
     padding:40px;text-align:center;color:var(--text-soft);
     border:1px dashed var(--line);background:var(--white);
   }
+  .promo-card{display:grid;grid-template-columns:280px 1fr;}
   @media(max-width:920px){
     .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .promo-card{grid-template-columns:1fr;}
+    .promo-card img{height:260px;}
   }
 </style>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -375,6 +378,7 @@
       <a href="#hizmetler">Hizmetler</a>
       <a href="#ilanlar">İlanlar</a>
       <a href="#form">Bilgi Formu</a>
+      <a href="#degerlendirme">Mülk Değerlendirme</a>
       <a href="#iletisim">İletişim</a>
       <a href="https://whatsapp.com/channel/0029Vb6OGGXCsU9V2EMHjQ3O" target="_blank" rel="noopener">WhatsApp Kanalı</a>
       <a href="/admin/" class="btn btn-primary btn-sm">Yönetim</a>
@@ -434,6 +438,25 @@
         <div class="fact"><span>Marka</span><span>Wen Gayrimenkul</span></div>
         <div class="fact"><span>Çalışma Alanı</span><span>Türkiye Geneli</span></div>
         <div class="fact"><span>İletişim</span><span>WhatsApp / Telefon</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:56px;">
+    <div class="promo-card" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.14);overflow:hidden;">
+      <img src="assets/kanal-afis.jpg" alt="Yatırımlık Arazi Fırsatları - WhatsApp Kanalı" style="width:100%;height:100%;object-fit:cover;">
+      <div style="padding:36px 40px;">
+        <h3 style="color:var(--gold-soft);font-size:1.4rem;margin-bottom:16px;">🔥 Yatırımlık Arazi Fırsatları — WhatsApp Kanalımız Açıldı! 🔥</h3>
+        <p style="color:#C9C4B6;margin-bottom:6px;">50.000₺'den başlayan fiyatlarla:</p>
+        <p style="color:#C9C4B6;line-height:1.9;">
+          🌿 Tarla &nbsp;·&nbsp; 🏡 Bahçe &nbsp;·&nbsp; 📍 Yatırımlık araziler &nbsp;·&nbsp; 💰 Uygun fırsatlar<br>
+          📲 Yeni ilanlar ilk kanala düşüyor!<br>
+          📍 Konum &nbsp;·&nbsp; 🧾 Tapu bilgileri &nbsp;·&nbsp; 🛣 Yol durumu &nbsp;·&nbsp; ⚡ Elektrik &amp; su bilgileri &nbsp;·&nbsp; 💸 Grup özel fırsatlar
+        </p>
+        <p style="color:#C9C4B6;margin-top:10px;">Hepsinden ilk siz haberdar olun 👌</p>
+        <p style="color:#8B8677;font-size:0.86rem;margin-top:14px;">⚠️ Kanal yalnızca bilgi amaçlıdır.<br>🚫 Reklam ve spam yasaktır.</p>
+        <p style="color:#C9C4B6;margin-top:10px;">📩 Katılım için aşağıdaki butondan ulaşabilirsiniz!</p>
+        <a href="https://whatsapp.com/channel/0029Vb6OGGXCsU9V2EMHjQ3O" target="_blank" rel="noopener" class="btn btn-gold" style="margin-top:18px;">WhatsApp Kanalına Katıl</a>
       </div>
     </div>
   </div>
@@ -543,6 +566,60 @@
 
       <div style="grid-column:1/-1;">
         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Gönder</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="degerlendirme" class="listings">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Değerlendirme Talebi</div>
+      <h2>Mülkünüzü değerlendirelim</h2>
+      <p>Satmak istediğiniz konut, arsa veya arazi hakkında bilgi bırakın, size dönüş yapalım.</p>
+    </div>
+    <form name="degerlendirme-form" method="POST" data-netlify="true" netlify-honeypot="bot-field-2"
+          style="background:var(--white);border:1px solid var(--line);padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:760px;">
+      <input type="hidden" name="form-name" value="degerlendirme-form">
+      <p style="display:none;"><label>Bunu boş bırakın: <input name="bot-field-2"></label></p>
+
+      <div style="grid-column:1/-1;">
+        <label style="display:block;font-size:0.8rem;font-weight:700;margin-bottom:8px;color:var(--ink);">Ad Soyad *</label>
+        <input type="text" name="ad-soyad" required style="width:100%;padding:12px 14px;border:1px solid var(--line);font-family:inherit;font-size:0.95rem;">
+      </div>
+
+      <div>
+        <label style="display:block;font-size:0.8rem;font-weight:700;margin-bottom:8px;color:var(--ink);">Telefon *</label>
+        <input type="tel" name="telefon" required style="width:100%;padding:12px 14px;border:1px solid var(--line);font-family:inherit;font-size:0.95rem;">
+      </div>
+
+      <div>
+        <label style="display:block;font-size:0.8rem;font-weight:700;margin-bottom:8px;color:var(--ink);">Mülk Türü *</label>
+        <select name="mulk-turu" required style="width:100%;padding:12px 14px;border:1px solid var(--line);font-family:inherit;font-size:0.95rem;background:var(--white);">
+          <option value="">Seçiniz</option>
+          <option value="Konut">Konut</option>
+          <option value="Arsa">Arsa</option>
+          <option value="Arazi">Arazi</option>
+        </select>
+      </div>
+
+      <div>
+        <label style="display:block;font-size:0.8rem;font-weight:700;margin-bottom:8px;color:var(--ink);">Parsel / Ada No</label>
+        <input type="text" name="parsel" placeholder="Örn. Ada 123, Parsel 45" style="width:100%;padding:12px 14px;border:1px solid var(--line);font-family:inherit;font-size:0.95rem;">
+      </div>
+
+      <div>
+        <label style="display:block;font-size:0.8rem;font-weight:700;margin-bottom:8px;color:var(--ink);">Konum / Bölge *</label>
+        <input type="text" name="konum" required placeholder="İl, ilçe, mahalle" style="width:100%;padding:12px 14px;border:1px solid var(--line);font-family:inherit;font-size:0.95rem;">
+      </div>
+
+      <div style="grid-column:1/-1;">
+        <label style="display:block;font-size:0.8rem;font-weight:700;margin-bottom:8px;color:var(--ink);">Açıklama</label>
+        <textarea name="aciklama" rows="4" placeholder="Mülkünüz hakkında eklemek istediğiniz bilgiler" style="width:100%;padding:12px 14px;border:1px solid var(--line);font-family:inherit;font-size:0.95rem;resize:vertical;"></textarea>
+      </div>
+
+      <div style="grid-column:1/-1;">
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Değerlendirme Talebi Gönder</button>
       </div>
     </form>
   </div>

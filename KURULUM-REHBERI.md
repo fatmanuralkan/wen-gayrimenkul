@@ -65,9 +65,13 @@ kayıt firmaları üzerinden alınır ve genelde TC kimlik numarası istenir
 
 ## Form yanıtlarını görme
 
-Sitenizdeki "Bilgi Formu"nu dolduran kişiler otomatik olarak Netlify hesabınıza düşer.
-Görmek için: Netlify panelinde sitenizi açın → üst menüden **"Forms"** sekmesine tıklayın →
-**"lead-form"** listesinde kimin ne zaman, hangi bilgilerle form gönderdiğini görürsünüz.
+Sitenizde 2 form var:
+- **"lead-form"** → Bilgi Formu (mülk arayan müşteriler)
+- **"degerlendirme-form"** → Mülk Değerlendirme Talebi (mülkünü satmak isteyenler)
+
+Bu formları dolduran kişiler otomatik olarak Netlify hesabınıza düşer.
+Görmek için: Netlify panelinde sitenizi açın → sol menüden **"Forms"** sekmesine tıklayın →
+her iki formu da ayrı ayrı listede görürsünüz.
 (Bu, Yönetim panelinden ayrı, Netlify hesabınızın kendi ekranıdır — ekstra kuruluma gerek yok.)
 
 ## Toplam maliyet
