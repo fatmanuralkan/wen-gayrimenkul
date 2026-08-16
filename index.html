@@ -753,6 +753,20 @@
   </div>
 </footer>
 
+<div class="listing-modal-overlay" id="listingModalOverlay">
+  <div class="listing-modal">
+    <button type="button" class="listing-modal-close" id="listingModalClose">&times;</button>
+    <div class="listing-modal-media" id="listingModalMedia"></div>
+    <div class="listing-modal-body">
+      <span class="listing-tag" id="listingModalTag"></span>
+      <h2 id="listingModalTitle"></h2>
+      <p class="price" id="listingModalPrice"></p>
+      <p class="desc" id="listingModalDesc"></p>
+      <a href="#" target="_blank" rel="noopener" class="listing-link-btn" id="listingModalLink" style="display:none">İlana Git →</a>
+    </div>
+  </div>
+</div>
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   const toggle = document.getElementById('mobileToggle');
@@ -905,20 +919,6 @@
     })
     .catch(() => {});
 </script>
-
-<div class="listing-modal-overlay" id="listingModalOverlay">
-  <div class="listing-modal">
-    <button type="button" class="listing-modal-close" id="listingModalClose">&times;</button>
-    <div class="listing-modal-media" id="listingModalMedia"></div>
-    <div class="listing-modal-body">
-      <span class="listing-tag" id="listingModalTag"></span>
-      <h2 id="listingModalTitle"></h2>
-      <p class="price" id="listingModalPrice"></p>
-      <p class="desc" id="listingModalDesc"></p>
-      <a href="#" target="_blank" rel="noopener" class="listing-link-btn" id="listingModalLink" style="display:none">İlana Git →</a>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
