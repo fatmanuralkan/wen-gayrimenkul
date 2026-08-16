@@ -329,6 +329,13 @@
   .listing-modal-body .listing-tag{margin-bottom:14px;}
   .listing-modal-body .price{font-weight:700;color:var(--ink);margin-bottom:18px;font-size:1.05rem;}
   .listing-modal-body .desc{white-space:pre-line;font-size:0.95rem;line-height:1.7;color:var(--text-soft);}
+  .listing-link-btn{
+    display:inline-block;margin-top:22px;padding:13px 26px;
+    background:var(--ink);color:#fff;text-decoration:none;
+    font-size:0.85rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
+    border-radius:2px;transition:background .2s ease;
+  }
+  .listing-link-btn:hover{background:var(--clay-dark);}
   body.modal-locked{overflow:hidden;}
   @media (max-width:640px){
     .listing-modal-overlay{padding:0;}
@@ -817,6 +824,7 @@
   const modalTitle = document.getElementById('listingModalTitle');
   const modalPrice = document.getElementById('listingModalPrice');
   const modalDesc = document.getElementById('listingModalDesc');
+  const modalLink = document.getElementById('listingModalLink');
   const modalClose = document.getElementById('listingModalClose');
 
   function openListingModal(item, photos){
@@ -825,6 +833,12 @@
     modalPrice.textContent = item.price || '';
     modalPrice.style.display = item.price ? '' : 'none';
     modalDesc.textContent = item.description || '';
+    if(item.link){
+      modalLink.href = item.link;
+      modalLink.style.display = '';
+    } else {
+      modalLink.style.display = 'none';
+    }
     modalMedia.innerHTML = buildMediaHtml(photos, item.video, item.title, true);
     attachSlider(modalMedia);
     modalOverlay.classList.add('open');
@@ -901,6 +915,7 @@
       <h2 id="listingModalTitle"></h2>
       <p class="price" id="listingModalPrice"></p>
       <p class="desc" id="listingModalDesc"></p>
+      <a href="#" target="_blank" rel="noopener" class="listing-link-btn" id="listingModalLink" style="display:none">İlana Git →</a>
     </div>
   </div>
 </div>
