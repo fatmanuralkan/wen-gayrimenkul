@@ -51,6 +51,7 @@ collections:
                 required: false
                 field: {label: "Fotoğraf", name: "image", widget: "image"}
               - {label: "Video (opsiyonel, tek video)", name: "video", widget: "file", required: false}
+              - {label: "Bağlantı (opsiyonel — örn. sahibinden.com ilan linki, tıklayınca oraya gitsin)", name: "link", widget: "string", required: false}
 
   - name: "gallery"
     label: "Galeri"
