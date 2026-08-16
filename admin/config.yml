@@ -44,7 +44,13 @@ collections:
                 options: ["Konut", "Ticari", "Arsa"]
               - {label: "Fiyat (opsiyonel)", name: "price", widget: "string", required: false}
               - {label: "Açıklama", name: "description", widget: "text"}
-              - {label: "Fotoğraf (opsiyonel)", name: "image", widget: "image", required: false}
+              - label: "Fotoğraflar (en fazla 30 adet — ilk eklenen kapak fotoğrafı olur)"
+                name: "images"
+                widget: "list"
+                max: 30
+                required: false
+                field: {label: "Fotoğraf", name: "image", widget: "image"}
+              - {label: "Video (opsiyonel, tek video)", name: "video", widget: "file", required: false}
 
   - name: "gallery"
     label: "Galeri"
