@@ -240,16 +240,31 @@
 
   /* Listings */
   .listings{background:var(--paper-warm);}
-  .listings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .listings-filters{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
+    margin-bottom:32px;
+  }
+  .listings-filter-btn{
+    padding:9px 20px;border:1px solid var(--line);background:var(--white);
+    color:var(--text-soft);font-size:0.82rem;font-weight:600;letter-spacing:0.03em;
+    border-radius:999px;cursor:pointer;transition:all .2s ease;
+  }
+  .listings-filter-btn:hover{border-color:var(--clay);color:var(--ink);}
+  .listings-filter-btn.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .listings-grid{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:24px;
+  }
   .listing-card{
     background:var(--white);
     border:1px solid var(--line);
     cursor:pointer;
     transition:box-shadow .25s ease, transform .25s ease;
+    width:360px;
+    flex:0 1 360px;
   }
   .listing-card:hover{box-shadow:0 10px 30px rgba(16,24,38,0.12);transform:translateY(-2px);}
   .listing-img{
-    height:180px;
+    height:220px;
     background:linear-gradient(135deg,var(--ink) 0%, var(--ink-soft) 100%);
     display:flex;align-items:center;justify-content:center;
     position:relative;
@@ -388,7 +403,7 @@
     .hero-photo-frame img{height:380px;}
     .about-grid{grid-template-columns:1fr;}
     .services-grid{grid-template-columns:1fr;}
-    .listings-grid{grid-template-columns:1fr;}
+    .listing-card{width:100%;flex:1 1 100%;}
     .contact-grid{grid-template-columns:1fr;}
     section{padding:64px 0;}
     .hero{padding:56px 0 64px;}
@@ -617,6 +632,7 @@
       <h2>Güncel Portföy</h2>
       <p>İlanlar Yönetim panelinden eklendikçe burada listelenecek.</p>
     </div>
+    <div class="listings-filters" id="listingsFilters"></div>
     <div class="listings-grid" id="listingsGrid">
       <div class="listing-card">
         <div class="listing-img"><span>Fotoğraf Eklenecek</span></div>
@@ -898,35 +914,82 @@
   modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) closeListingModal(); });
   document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeListingModal(); });
 
-  // --- İlanları (data/listings.json) çek ve kartları oluştur ---
+  // --- İlanları (data/listings.json) çek, filtrele ve kartları oluştur ---
+  function renderListingCard(grid, item){
+    const card = document.createElement('div');
+    card.className = 'listing-card';
+
+    // Eski tekil "image" alanıyla da uyumlu çalışsın diye ikisini birleştiriyoruz
+    const photos = Array.isArray(item.images) ? item.images.filter(Boolean) : (item.image ? [item.image] : []);
+    const mediaHtml = buildMediaHtml(photos, item.video, item.title, false);
+
+    card.innerHTML = `
+      ${mediaHtml}
+      <div class="listing-body">
+        <span class="listing-tag">${item.type || 'İlan'}</span>
+        <h3>${item.title || 'İlan başlığı'}</h3>
+        <p>${item.description || ''}</p>
+        ${item.price ? `<p style="margin-top:8px;font-weight:700;color:var(--ink)">${item.price}</p>` : ''}
+        <span class="listing-more">Detayları Gör →</span>
+      </div>`;
+    grid.appendChild(card);
+    attachSlider(card);
+    card.addEventListener('click', () => openListingModal(item, photos));
+  }
+
   fetch('data/listings.json?_=' + Date.now())
     .then(r => r.ok ? r.json() : null)
     .then(d => {
       if(!d || !d.items || !d.items.length) return;
       const grid = document.getElementById('listingsGrid');
-      grid.innerHTML = '';
-      d.items.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'listing-card';
+      const filtersBar = document.getElementById('listingsFilters');
+      const items = d.items;
 
-        // Eski tekil "image" alanıyla da uyumlu çalışsın diye ikisini birleştiriyoruz
-        const photos = Array.isArray(item.images) ? item.images.filter(Boolean) : (item.image ? [item.image] : []);
-        const mediaHtml = buildMediaHtml(photos, item.video, item.title, false);
-
-        card.innerHTML = `
-          ${mediaHtml}
-          <div class="listing-body">
-            <span class="listing-tag">${item.type || 'İlan'}</span>
-            <h3>${item.title || 'İlan başlığı'}</h3>
-            <p>${item.description || ''}</p>
-            ${item.price ? `<p style="margin-top:8px;font-weight:700;color:var(--ink)">${item.price}</p>` : ''}
-            <span class="listing-more">Detayları Gör →</span>
-          </div>`;
-        grid.appendChild(card);
-        attachSlider(card);
-
-        card.addEventListener('click', () => openListingModal(item, photos));
+      // Veride gerçekten var olan kategorileri sırayla bul
+      const categories = [];
+      items.forEach(it => {
+        const t = it.type || 'İlan';
+        if(!categories.includes(t)) categories.push(t);
       });
+
+      let activeFilter = 'Tümü';
+
+      function renderGrid(){
+        grid.innerHTML = '';
+        const filtered = activeFilter === 'Tümü' ? items : items.filter(it => (it.type || 'İlan') === activeFilter);
+        if(!filtered.length){
+          grid.innerHTML = '<div class="gallery-empty" style="width:100%;">Bu kategoride ilan bulunamadı.</div>';
+          return;
+        }
+        filtered.forEach(item => renderListingCard(grid, item));
+      }
+
+      if(categories.length > 1){
+        const allBtn = document.createElement('button');
+        allBtn.type = 'button';
+        allBtn.className = 'listings-filter-btn active';
+        allBtn.textContent = 'Tümü';
+        allBtn.addEventListener('click', () => setActive(allBtn, 'Tümü'));
+        filtersBar.appendChild(allBtn);
+
+        categories.forEach(cat => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'listings-filter-btn';
+          btn.textContent = cat;
+          btn.addEventListener('click', () => setActive(btn, cat));
+          filtersBar.appendChild(btn);
+        });
+      }
+
+      function setActive(btn, cat){
+        filtersBar.querySelectorAll('.listings-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = cat;
+        renderGrid();
+      }
+
+      renderGrid();
     })
     .catch(() => {});
 
