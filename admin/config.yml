@@ -41,7 +41,7 @@ collections:
               - label: "Tür"
                 name: "type"
                 widget: "select"
-                options: ["Konut", "Ticari", "Arsa"]
+                options: ["Konut", "Ticari", "Arsa", "Arazi", "Tarla", "Zeytinlik", "Kiralık"]
               - {label: "Fiyat (opsiyonel)", name: "price", widget: "string", required: false}
               - {label: "Açıklama", name: "description", widget: "text"}
               - label: "Fotoğraflar (en fazla 30 adet — ilk eklenen kapak fotoğrafı olur)"
