@@ -945,12 +945,8 @@
       const filtersBar = document.getElementById('listingsFilters');
       const items = d.items;
 
-      // Veride gerçekten var olan kategorileri sırayla bul
-      const categories = [];
-      items.forEach(it => {
-        const t = it.type || 'İlan';
-        if(!categories.includes(t)) categories.push(t);
-      });
+      // Sabit kategori listesi — ilan olmasa bile sekme görünsün
+      const categories = ["Arsa", "Konut", "Arazi", "Kiralık", "Zeytinlik", "Tarla", "Ticari"];
 
       let activeFilter = 'Tümü';
 
