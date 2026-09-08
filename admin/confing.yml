@@ -1,0 +1,70 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+locale: "tr"
+
+collections:
+  - name: "settings"
+    label: "Site Ayarları"
+    files:
+      - file: "data/settings.json"
+        label: "İletişim ve Genel Bilgiler"
+        name: "settings"
+        fields:
+          - {label: "Telefon (görünen)", name: "phone", widget: "string"}
+          - {label: "WhatsApp Numarası (90 ile başlasın, boşluksuz, örn 905XXXXXXXXX)", name: "whatsapp", widget: "string"}
+          - {label: "E-posta", name: "email", widget: "string"}
+          - {label: "Adres", name: "address", widget: "text"}
+          - {label: "Çalışma Saatleri", name: "hours", widget: "string"}
+          - {label: "Ana Sayfa Başlığı", name: "hero_title", widget: "string"}
+          - {label: "Ana Sayfa Alt Metni", name: "hero_subtitle", widget: "text"}
+          - {label: "Hakkımda - 1. Paragraf", name: "about_p1", widget: "text"}
+          - {label: "Hakkımda - 2. Paragraf", name: "about_p2", widget: "text"}
+
+  - name: "listings"
+    label: "İlanlar"
+    files:
+      - file: "data/listings.json"
+        label: "İlan Listesi"
+        name: "listings"
+        fields:
+          - label: "İlanlar"
+            name: "items"
+            widget: "list"
+            summary: "{{title}} — {{type}}"
+            fields:
+              - {label: "Başlık", name: "title", widget: "string"}
+              - label: "Tür"
+                name: "type"
+                widget: "select"
+                options: ["Konut", "Ticari", "Arsa", "Arazi", "Tarla", "Zeytinlik", "Kiralık"]
+              - {label: "Fiyat (opsiyonel)", name: "price", widget: "string", required: false}
+              - {label: "Açıklama", name: "description", widget: "text"}
+              - label: "Fotoğraflar (en fazla 30 adet — ilk eklenen kapak fotoğrafı olur)"
+                name: "images"
+                widget: "list"
+                max: 30
+                required: false
+                field: {label: "Fotoğraf", name: "image", widget: "image"}
+              - {label: "Video (opsiyonel, tek video)", name: "video", widget: "file", required: false}
+              - {label: "Bağlantı (opsiyonel — örn. sahibinden.com ilan linki, tıklayınca oraya gitsin)", name: "link", widget: "string", required: false}
+
+  - name: "gallery"
+    label: "Galeri"
+    files:
+      - file: "data/gallery.json"
+        label: "Galeri Fotoğraf & Videoları"
+        name: "gallery"
+        fields:
+          - label: "Fotoğraf / Video"
+            name: "items"
+            widget: "list"
+            summary: "{{caption}}"
+            fields:
+              - {label: "Fotoğraf (video ekliyorsanız boş bırakın)", name: "image", widget: "image", required: false}
+              - {label: "Video (fotoğraf ekliyorsanız boş bırakın)", name: "video", widget: "file", required: false}
+              - {label: "Açıklama (opsiyonel)", name: "caption", widget: "string", required: false}
